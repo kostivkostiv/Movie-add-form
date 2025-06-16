@@ -1,21 +1,32 @@
-import React from 'react';
 import './App.scss';
+import { MoviesList } from './components/MoviesList';
+import { NewMovie } from './components/NewMovie';
+import moviesFromServer from './api/movies.json';
+import { useState } from 'react';
 
-interface Props {
-  onClick: () => void;
-  children: React.ReactNode;
-}
+type Movie = {
+  title: string;
+  desctiption?: string;
+  imgUrl: string;
+  imdbUrl: string;
+  imdbId: string;
+};
 
-export const Provider: React.FC<Props> = React.memo(({ onClick, children }) => (
-  <button type="button" onClick={onClick}>
-    {children}
-  </button>
-));
+export const App = () => {
+  const [movies, setMovies] = useState<Movie[]>(moviesFromServer);
 
-export const App: React.FC = () => {
+  const onAdd = (current: Movie) => {
+    setMovies([...movies, current]);
+  };
+
   return (
-    <div className="starter">
-      <Provider onClick={() => ({})}>TodoList</Provider>
+    <div className="page">
+      <div className="page-content">
+        <MoviesList movies={movies} />
+      </div>
+      <div className="sidebar">
+        <NewMovie onAdd={onAdd} />
+      </div>
     </div>
   );
 };
