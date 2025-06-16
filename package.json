@@ -1,7 +1,7 @@
 {
-  "homepage": ".",
   "name": "react-typescript-starter-pack",
   "version": "0.1.0",
+  "homepage": "https://kostivkostiv.github.io/Movie-add-form/",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.2",
     "bulma": "^1.0.1",
